@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  LFS3K6:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Description: lambda function
+      Handler: index.handler
+      Runtime: python3.8
+      Role: 'arn:aws:iam::786678469955:role/@brole'
+      Code:
+        ZipFile: |
+          import boto3
+          import logging
+          logger = logging.getLogger()
+          logger.setLevel(logging.INFO)
+          ec2 = boto3.resource('ec2')
+          def lambda_handler(event, context):
+              filters = [{
+              'Name': 'tag:DeleteMe',
+              'Values': ['True']
+              },
+              ]
+              instances = ec2.instances.filter(Filters=filters)
+              terminateInstances = [instance.id for instance in instances]
+              if len(terminateInstances) > 0:
+                  startingUp = ec2.instances.filter(InstanceIds=terminateInstances).terminate()
+                  print (startingUp)
+              else:
+                  print ("Nothing to see here")
+          FunctionName: SnapRegion1ToRegion2
+          Runtime: python3.8
