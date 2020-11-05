@@ -5,7 +5,7 @@ Resources:
     Properties:
       Description: lambda function
       Handler: index.handler
-      Runtime: python3.8
+      Runtime: python3.7
       Role: 'arn:aws:iam::786678469955:role/@brole'
       Code:
         ZipFile: |
@@ -28,4 +28,4 @@ Resources:
               else:
                   print ("Nothing to see here")
           FunctionName: SnapRegion1ToRegion2
-          Runtime: python3.8
+          Runtime: python3.7
