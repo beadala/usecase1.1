@@ -10,7 +10,7 @@ stage('Deploy') {
 steps {
 sh 'cd /usr/local/bin/'
 sh 'ls'
-sh "/usr/local/bin/aws cloudformation create-stack --stack-name DevLambda --template-body file://forgit.yml --region 'ap-southeast-2'"
+sh "/usr/local/bin/aws cloudformation create-stack --stack-name ProdLambda --template-body file://forgit.yml --region 'ap-southeast-2'"
 }
 }
 }
